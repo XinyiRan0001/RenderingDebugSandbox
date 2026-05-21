@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\yesta\Portfolio\RenderingDebugSandbox\build\CMakeFiles\04982600ae34266bc58a71ad2e994157\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{2697F72B-C10C-365B-9026-50D3449B3E51}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

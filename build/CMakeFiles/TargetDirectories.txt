@@ -1,0 +1,3 @@
+C:/Users/yesta/Portfolio/RenderingDebugSandbox/build/CMakeFiles/RenderingDebugSandbox.dir
+C:/Users/yesta/Portfolio/RenderingDebugSandbox/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/yesta/Portfolio/RenderingDebugSandbox/build/CMakeFiles/ZERO_CHECK.dir
