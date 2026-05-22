@@ -1,7 +1,8 @@
-#include <iostream>
+#include "RopeVisualDemo.h"
 
 int main()
 {
-    std::cout << "Rendering Debug Sandbox started." << std::endl;
+    RopeVisualDemo demo;
+    demo.run();
     return 0;
 }
