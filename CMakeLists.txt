@@ -11,6 +11,9 @@ find_package(imgui CONFIG REQUIRED)
 
 add_executable(RenderingDebugSandbox
     src/app/main.cpp
+    src/rasterizer/RasterizerDemo.cpp
+    src/rasterizer/Triangle.cpp
+    src/rasterizer/Framebuffer.cpp
     src/app/RopeVisualDemo.cpp
     src/simulation/rope/rope.cpp
 )
