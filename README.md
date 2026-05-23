@@ -1,264 +1,196 @@
 # Rendering Debug Sandbox
 
-A C++ real-time rendering and physics debugging sandbox built with OpenGL, GLFW, and ImGui.
+A small interactive graphics and physics sandbox built in C++ using OpenGL, GLFW, and ImGui.
 
-This project is designed as a rendering / engine programming portfolio project focused on:
+This project combines:
+- Rope physics simulation
+- Software rasterization
+- Z-buffer rendering
+- Debug visualization tools
+- Interactive rendering experiments
 
-- Physics simulation debugging
-- Debug visualization systems
-- Runtime profiling
-- Fixed timestep simulation
-- Rendering experimentation
-- Engine-style tooling workflows
-
----
-
-# Current Module
-
-## Rope Simulation Debug Module
-
-A rope physics simulation inspired by GAMES101 Assignment 8, expanded into a real-time interactive debugging sandbox.
-
-The project compares multiple integration methods while visualizing simulation behavior in real time.
+The goal of this project is to explore foundational computer graphics and simulation techniques inspired by GAMES101 and real-world rendering/debugging workflows.
 
 ---
 
 # Features
 
-## Physics Simulation
+## Rope Simulation Module
 
-- Explicit Euler Integration
-- Verlet Integration
-- Fixed timestep physics update
-- Rope spring constraint simulation
+- Euler integration
+- Verlet integration
+- Interactive solver switching
+- Velocity visualization
+- Simulation timing & FPS debug
+- Real-time rope physics
+
+### Euler Solver
+![Euler Debug](images/euler_debug.png)
+
+### Verlet Solver
+![Verlet Debug](images/verlet_debug.png)
 
 ---
 
-## Debug Visualization
+## Software Rasterizer Module
 
-- Velocity vector visualization
-- Pinned node visualization
-- Solver color visualization
-- Runtime debug UI
+Implemented fully on the CPU:
+
+- Triangle rasterization
+- Edge-function inside-triangle test
+- Barycentric interpolation
+- Z-buffer depth testing
+- Wireframe rendering
+- 2x2 MSAA anti-aliasing
+- Interactive triangle rotation
+- CPU framebuffer rendering
+- Multiple debug visualization modes
 
 ---
 
-## Runtime Systems
+# Rasterizer Debug Views
 
-- Real-time profiling
-- FPS display
-- Simulation timing
-- Interactive runtime controls
+## Final Color
+![Rasterizer Final](images/rasterizer_final_color.gif)
+
+## Depth Buffer Visualization
+![Rasterizer Depth](images/rasterizer_depth.gif)
+
+## Wireframe View
+![Rasterizer Wireframe](images/rasterizer_wireframe.gif)
+
+## 2x2 MSAA
+![Rasterizer MSAA](images/rasterizer_msaa.gif)
+
+---
+
+# Technical Breakdown
+
+## Rope Physics
+
+The rope simulation supports both:
+- Explicit Euler integration
+- Verlet integration
+
+The simulation includes:
+- Spring constraints
+- Gravity forces
+- Pinned particles
+- Real-time debug visualization
+
+---
+
+## Rasterization Pipeline
+
+The software rasterizer includes:
+
+### Triangle Rasterization
+Triangles are rasterized on the CPU using edge functions.
+
+### Inside-Triangle Test
+Pixel coverage is determined using signed edge equations.
+
+### Barycentric Interpolation
+Depth values are interpolated per-pixel using barycentric coordinates.
+
+### Z-Buffer
+Per-pixel depth testing is implemented using a custom depth buffer.
+
+### MSAA Anti-Aliasing
+2x2 multi-sampling is implemented manually on the CPU.
+
+### Debug Views
+The renderer supports:
+- Final Color
+- Depth Buffer
+- Wireframe
+
+similar to rendering debugging tools used in graphics engines.
 
 ---
 
 # Controls
 
+## Rope Simulation
+
 | Key | Action |
 |---|---|
-| 1 | Switch to Euler Solver |
-| 2 | Switch to Verlet Solver |
+| 1 | Euler Solver |
+| 2 | Verlet Solver |
 | R | Reset Rope |
 | V | Toggle Velocity Visualization |
 
 ---
 
-# Solver Comparison
+## Rasterizer
 
-## Euler Integration
-
-Euler integration is simple but numerically unstable.
-
-Observed behavior:
-- energy drift
-- rope stretching
-- unstable motion under larger forces
-
-The sandbox visualizes these issues through exaggerated velocity behavior and rope instability.
+| Key | Action |
+|---|---|
+| 1 | Final Color |
+| 2 | Depth Buffer |
+| 3 | Wireframe |
+| 4 | MSAA View |
+| A | Rotate Triangle Left |
+| D | Rotate Triangle Right |
 
 ---
 
-## Verlet Integration
-
-Verlet integration preserves momentum more effectively and produces more stable rope behavior.
-
-Observed behavior:
-- smoother rope motion
-- more natural swinging
-- improved stability
-- better momentum preservation
-
----
-
-# Debug Visualization
-
-## Velocity Vectors
-
-Blue debug lines visualize rope mass movement direction and magnitude in real time.
-
-This allows quick inspection of:
-- momentum transfer
-- unstable motion
-- integration behavior
-- constraint response
-
----
-
-## Pinned Nodes
-
-Pinned constraint nodes are visualized in red.
-
-This helps debug:
-- anchor constraints
-- rope setup
-- constraint stability
-
----
-
-# Profiling
-
-The sandbox includes lightweight runtime profiling.
-
-Displayed runtime statistics:
-- simulation time
-- frame time
-- FPS
-- fixed timestep information
-
----
-
-# Technical Highlights
-
-## Fixed Timestep Simulation
-
-Physics updates run independently from rendering frame rate.
-
-This avoids:
-- frame-rate dependent physics
-- inconsistent simulation speed
-- unstable update behavior
-
----
-
-## Interactive Runtime Debugging
-
-The project includes runtime visualization and debugging tools commonly found in engine development workflows.
-
-Examples:
-- runtime solver switching
-- debug overlays
-- profiling panels
-- simulation visualization
-
----
-
-# Technologies
-
-- C++
-- OpenGL
-- GLFW
-- ImGui
-- CMake
-- vcpkg
-
----
-
-# Project Structure
-
-```text
-src/
-├── app/
-│   ├── main.cpp
-│   ├── RopeVisualDemo.cpp
-│   └── RopeVisualDemo.h
-│
-├── simulation/
-│   └── rope/
-│       ├── rope.cpp
-│       ├── rope.h
-│       ├── mass.cpp
-│       ├── mass.h
-│       ├── spring.cpp
-│       └── spring.h
-│
-├── profiling/
-│   └── Timer.h
-│
-└── core/
-```
-
----
-
-# Screenshots
-
-## Verlet Solver + Velocity Visualization
-
-![Verlet Debug](images/verlet_debug.png)
-
----
-
-## Euler Solver Comparison
-
-![Euler Debug](images/euler_debug.png)
-
----
-
-# Build Instructions
+# Build
 
 ## Requirements
 
-- Visual Studio 2022
 - CMake
-- vcpkg
+- Visual Studio 2022
+- OpenGL
+- GLFW
+- ImGui
 
----
-
-## Install Dependencies
-
-```bash
-vcpkg install glfw3:x64-windows
-vcpkg install imgui[glfw-binding,opengl3-binding]:x64-windows
-```
-
----
-
-## Build
+## Build Instructions
 
 ```bash
 mkdir build
 cd build
 
-cmake .. ^
--DCMAKE_TOOLCHAIN_FILE=C:/vcpkg-master/vcpkg-master/scripts/buildsystems/vcpkg.cmake
+cmake ..
 
 cmake --build . --config Debug
 ```
 
----
+Run:
 
-# Future Work
-
-Planned future modules:
-
-- Software Rasterizer Debugger
-- Wireframe Visualization
-- Depth Buffer Visualization
-- Normal Visualization
-- BVH Visualization
-- Ray Tracing Debug Views
-- GPU/CPU timing instrumentation
-- Shader debugging utilities
+```bash
+.\Debug\RenderingDebugSandbox.exe
+```
 
 ---
 
-# Motivation
+# Future Improvements
 
-This project was created to deepen understanding of:
+Planned future features include:
 
-- rendering systems
-- simulation architecture
-- profiling workflows
-- real-time graphics programming
-- debug visualization systems
+- Texture mapping
+- Perspective correct interpolation
+- Model loading
+- Blinn-Phong shading
+- Normal visualization
+- Shadow mapping experiments
+- GPU rendering comparison
+- Deferred rendering experiments
 
-while building practical engine-style tooling and rendering workflows in C++.
+---
+
+# Learning Goals
+
+This project was built as a personal graphics engineering sandbox to better understand:
+
+- Rendering pipelines
+- Rasterization
+- Depth buffering
+- Anti-aliasing
+- Simulation systems
+- Graphics debugging workflows
+
+Inspired by:
+- GAMES101
+- Graphics debugging tools
+- Real-time rendering pipelines
