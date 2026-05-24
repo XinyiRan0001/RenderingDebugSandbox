@@ -14,6 +14,7 @@ add_executable(RenderingDebugSandbox
     src/rasterizer/RasterizerDemo.cpp
     src/rasterizer/Triangle.cpp
     src/rasterizer/Framebuffer.cpp
+    src/model_renderer/ModelRendererDemo.cpp
     src/app/RopeVisualDemo.cpp
     src/simulation/rope/rope.cpp
 )
@@ -29,3 +30,5 @@ target_link_libraries(RenderingDebugSandbox PRIVATE
     OpenGL::GL
     imgui::imgui
 )
+
+file(COPY assets DESTINATION ${CMAKE_BINARY_DIR})

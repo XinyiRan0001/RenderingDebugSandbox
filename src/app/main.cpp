@@ -2,12 +2,14 @@
 
 #include "RopeVisualDemo.h"
 #include "../rasterizer/RasterizerDemo.h"
+#include "../model_renderer/ModelRendererDemo.h"
 
 int main()
 {
     std::cout << "=== Rendering Debug Sandbox ===" << std::endl;
     std::cout << "1 - Rope Simulation" << std::endl;
     std::cout << "2 - Rasterizer Debugger" << std::endl;
+    std::cout << "3 - Model Renderer Debugger" << std::endl;
 
     int choice;
     std::cin >> choice;
@@ -20,6 +22,11 @@ int main()
     else if (choice == 2)
     {
         RasterizerDemo demo;
+        demo.run();
+    }
+    else if (choice == 3)
+    {
+        ModelRendererDemo demo;
         demo.run();
     }
 
