@@ -3,7 +3,12 @@
 enum class ModelRenderMode
 {
     Wireframe,
-    Normal
+    Normal,
+    Lambert,
+    BlinnPhong,
+    UV,
+    Texture,
+    TextureLinear
 };
 
 class ModelRendererDemo

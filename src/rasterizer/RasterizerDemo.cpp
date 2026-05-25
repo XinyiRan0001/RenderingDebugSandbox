@@ -26,6 +26,7 @@ static void rasterizeTriangle(
     const Triangle& triangle,
     RasterizerViewMode viewMode
 )
+
 {
     float area =
         edgeFunction(
