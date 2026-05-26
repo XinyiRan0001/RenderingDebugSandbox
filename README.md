@@ -310,6 +310,34 @@ The model renderer includes several runtime visualization modes similar to rende
 
 ---
 
+---
+
+## Path Tracing Renderer
+
+| Key | Action |
+|---|---|
+| 1 | View Render Gallery |
+| 2 | Baseline Benchmark |
+| 3 | Progressive Preview |
+| 4 | High Quality Render |
+| 5 | Thread Benchmark Comparison |
+| 6 | BVH ON/OFF Benchmark |
+| 7 | Cornell Box Stress Test |
+| 8 | Back |
+
+---
+
+## Benchmark Modes
+
+| Mode | Description |
+|---|---|
+| Baseline Benchmark | Standard Cornell Box benchmark configuration |
+| Progressive Preview | Fast low-SPP preview rendering |
+| High Quality Render | Higher resolution final render |
+| Thread Benchmark | Compare multi-threading performance |
+| BVH Benchmark | Compare BVH enabled/disabled traversal |
+| Cornell Stress Test | Cornell Box with additional sphere geometry |
+
 # Build
 
 ## Requirements
