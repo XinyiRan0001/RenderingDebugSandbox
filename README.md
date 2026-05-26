@@ -144,14 +144,41 @@ BVH ON/OFF comparison benchmark included.
 
 | Mode | Time |
 |---|---|
-| BVH ON | 8.69 sec |
-| BVH OFF | 9.12 sec |
+| BVH ON | 2.47 sec |
+| BVH OFF | 2.88 sec |
 
+### Profiling Breakdown
+
+```txt
+BVH Build : 0 ms
+Path Trace / Ray Generation : 2461 ms
+Framebuffer Write : 7 ms
+Full Render : 2471 ms
+```
+
+### Analysis
+
+The benchmark confirmed that BVH acceleration reduced scene traversal cost during path tracing.
+
+The current benchmark scene contains 100 additional sphere objects and demonstrated a measurable performance improvement with BVH enabled.
+
+The relatively modest speedup suggests that larger triangle-heavy scenes would benefit more significantly from acceleration structure traversal optimization.
 ---
 
-## Multi-threaded Rendering
+### Thread Scaling Result
 
-The renderer supports configurable CPU worker thread counts.
+| Threads | Render Time |
+|---|---:|
+| 1 | 57.73s |
+| 2 | 43.95s |
+| 4 | 19.55s |
+| 8 | 5.40s |
+
+### Profiling Observation
+
+The renderer demonstrated substantial performance improvements as CPU thread count increased.
+
+The largest performance gain was observed between the 4-thread and 8-thread configurations, showing effective workload distribution during recursive ray tracing.
 
 ### Thread Scaling Benchmark
 
@@ -197,6 +224,26 @@ The renderer pipeline includes:
 - Recursive light transport
 - Monte Carlo sampling
 - Multi-threaded framebuffer rendering
+
+---
+
+### Profiling Stages
+
+The renderer includes internal timing instrumentation for:
+
+- BVH construction
+- Path trace / ray generation
+- Framebuffer write
+- Full render timing
+
+Example runtime profiling output:
+
+```txt
+BVH Build : 0 ms
+Path Trace / Ray Generation : 5390 ms
+Framebuffer Write : 6 ms
+Full Render : 5399 ms
+```
 
 ---
 
