@@ -415,17 +415,36 @@ Run:
 
 ---
 
-# Future Improvements
+# Graphics Debugging Investigation
 
-Planned future features include:
+During RenderDoc analysis, the Model Renderer pipeline was investigated to evaluate draw call inspection and GPU pipeline debugging workflows.
 
-- SAH BVH construction
-- Cook-Torrance microfacet BRDF
-- Progressive accumulation rendering
-- Tile-based rendering
-- Environment map lighting
-- GPU ray tracing experiments
-- Vulkan/DXR renderer comparison
+The investigation revealed that the renderer currently relies on legacy OpenGL immediate-mode rendering using compatibility profile functions such as:
+
+```cpp
+glBegin(...)
+glEnd()
+glVertex3f(...)
+glColor3f(...)
+glLoadIdentity()
+```
+
+As a result, RenderDoc capture support was limited due to the renderer not yet using a modern programmable OpenGL pipeline.
+
+This investigation highlighted several architectural limitations:
+
+- CPU-side lighting calculations
+- Immediate-mode geometry submission
+- Fixed-function pipeline dependencies
+- Lack of VAO/VBO-based rendering
+
+The investigation motivated future migration toward:
+
+- Modern OpenGL rendering
+- VAO/VBO/EBO pipelines
+- Shader-based rendering stages
+- Improved GPU debugging workflows
+- Better compatibility with RenderDoc and graphics profiling tools
 
 ---
 
