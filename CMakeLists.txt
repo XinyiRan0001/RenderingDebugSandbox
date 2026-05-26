@@ -19,12 +19,18 @@ add_executable(RenderingDebugSandbox
     src/app/RopeVisualDemo.cpp
     src/simulation/rope/rope.cpp
     src/model_renderer/Texture.cpp
+    src/path_tracer/PathTracingDemo.cpp
+    src/path_tracer/Renderer.cpp
+    src/path_tracer/Scene.cpp
+    src/path_tracer/BVH.cpp
+    src/path_tracer/Vector.cpp
 )
 
 target_include_directories(RenderingDebugSandbox PRIVATE
     src/app
     src/core
     src/simulation/rope
+    src/path_tracer
 )
 
 target_link_libraries(RenderingDebugSandbox PRIVATE

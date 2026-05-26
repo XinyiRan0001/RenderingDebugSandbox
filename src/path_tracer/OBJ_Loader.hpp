@@ -1,18 +1,11 @@
-//
-// Created by LEI XU on 4/28/19.
-//
-//
+// OBJ_Loader.h - A Single Header OBJ Model Loader
 // This loader is created by Robert Smith.
 // https://github.com/Bly7/OBJ-Loader
 // Use the MIT license.
 
-
-#ifndef RASTERIZER_OBJ_LOADER_H
-#define RASTERIZER_OBJ_LOADER_H
-
 #pragma once
 
-
+#include <optional>
 #include <iostream>
 #include <vector>
 #include <string>
@@ -20,7 +13,7 @@
 #include <math.h>
 
 // Print progress to console while loading (large models)
-#define OBJL_CONSOLE_OUTPUT
+//#define OBJL_CONSOLE_OUTPUT
 
 // Namespace: OBJL
 //
@@ -152,7 +145,7 @@ namespace objl
     {
         Material()
         {
-            name;
+            name = "";
             Ns = 0.0f;
             Ni = 0.0f;
             d = 0.0f;
@@ -205,6 +198,7 @@ namespace objl
         {
             Vertices = _Vertices;
             Indices = _Indices;
+            MeshMaterial = std::nullopt;
         }
         // Mesh Name
         std::string MeshName;
@@ -214,7 +208,7 @@ namespace objl
         std::vector<unsigned int> Indices;
 
         // Material
-        Material MeshMaterial;
+        std::optional<Material> MeshMaterial;
     };
 
     // Namespace: Math
@@ -735,7 +729,6 @@ namespace objl
             std::vector<std::string> sface, svert;
             Vertex vVert;
             algorithm::split(algorithm::tail(icurline), sface, " ");
-
             bool noNormal = false;
 
             // For every given vertex do this
@@ -1167,4 +1160,3 @@ namespace objl
         }
     };
 }
-#endif //RASTERIZER_OBJ_LOADER_H

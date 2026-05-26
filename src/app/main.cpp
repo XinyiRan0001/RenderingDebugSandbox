@@ -3,6 +3,7 @@
 #include "RopeVisualDemo.h"
 #include "../rasterizer/RasterizerDemo.h"
 #include "../model_renderer/ModelRendererDemo.h"
+#include "../path_tracer/PathTracingDemo.h"
 
 int main()
 {
@@ -10,6 +11,7 @@ int main()
     std::cout << "1 - Rope Simulation" << std::endl;
     std::cout << "2 - Rasterizer Debugger" << std::endl;
     std::cout << "3 - Model Renderer Debugger" << std::endl;
+    std::cout << "4 - Path Tracing Renderer" << std::endl;
 
     int choice;
     std::cin >> choice;
@@ -27,6 +29,11 @@ int main()
     else if (choice == 3)
     {
         ModelRendererDemo demo;
+        demo.run();
+    }
+    else if (choice == 4)
+    {
+        PathTracingDemo demo;
         demo.run();
     }
 
