@@ -94,6 +94,125 @@ An interactive OBJ model renderer based on Assignment 3 concepts, extended with 
 
 ---
 
+---
+
+# CPU Path Tracing Renderer
+
+A CPU-based Monte Carlo path tracing renderer implemented in C++.
+
+The renderer supports:
+- Recursive path tracing
+- Global illumination
+- Russian Roulette termination
+- OBJ mesh loading
+- BVH acceleration structure
+- Multi-threaded rendering
+- Cornell Box rendering
+- Stress test benchmarking
+- Benchmark comparison tools
+
+Inspired by:
+- PBRT
+- GAMES101
+- Offline rendering workflows
+
+---
+
+# Path Tracing Features
+
+## Monte Carlo Global Illumination
+
+Implemented recursive Monte Carlo path tracing with:
+- Direct lighting
+- Indirect diffuse bounce
+- Recursive ray evaluation
+- Russian Roulette optimization
+
+---
+
+## BVH Acceleration Structure
+
+Implemented a CPU BVH acceleration structure including:
+- Recursive BVH construction
+- Bounding box intersection tests
+- BVH traversal
+- Closest-hit ray intersection
+
+### BVH Benchmark
+
+BVH ON/OFF comparison benchmark included.
+
+| Mode | Time |
+|---|---|
+| BVH ON | 8.69 sec |
+| BVH OFF | 9.12 sec |
+
+---
+
+## Multi-threaded Rendering
+
+The renderer supports configurable CPU worker thread counts.
+
+### Thread Scaling Benchmark
+
+![Preview](images/Benchmark_1Threads_result.png)
+![Preview](images/Benchmark_2Threads_result.png)
+![Preview](images/Benchmark_4Threads_result.png)
+![Preview](images/Benchmark_8Threads_result.png)
+
+
+# Cornell Box Rendering
+
+Implemented Cornell Box rendering using OBJ mesh loading.
+
+### Progressive Preview (8 SPP)
+![Preview](images/Benchmark_1Threads.png)
+
+### High Quality Render (16 SPP)
+![High Quality](images/HighQuality_16SPP.png)
+
+### Final Render (64 SPP)
+![Final Render](images/Final_64SPP.png)
+
+---
+
+# Cornell Box Stress Test
+
+Extended Cornell Box scene with additional sphere geometry to benchmark:
+- BVH traversal
+- Multi-threaded rendering
+- Scene complexity scaling
+
+### Stress Test Render
+![Stress Test](images/Cornell_Stress_Test.png)
+
+---
+
+# Renderer Architecture
+
+The renderer pipeline includes:
+- Ray generation
+- BVH traversal
+- Triangle/sphere intersection
+- Recursive light transport
+- Monte Carlo sampling
+- Multi-threaded framebuffer rendering
+
+---
+
+# Benchmark Tools
+
+The sandbox includes multiple renderer benchmark modes:
+
+- Baseline Benchmark
+- Progressive Preview
+- High Quality Render
+- Thread Scaling Benchmark
+- BVH ON/OFF Benchmark
+- Cornell Box Stress Test
+
+---
+
 # Technical Breakdown
 
 ## Rope Physics
@@ -225,14 +344,13 @@ Run:
 
 Planned future features include:
 
-- Texture mapping
-- Perspective correct interpolation
-- Model loading
-- Blinn-Phong shading
-- Normal visualization
-- Shadow mapping experiments
-- GPU rendering comparison
-- Deferred rendering experiments
+- SAH BVH construction
+- Cook-Torrance microfacet BRDF
+- Progressive accumulation rendering
+- Tile-based rendering
+- Environment map lighting
+- GPU ray tracing experiments
+- Vulkan/DXR renderer comparison
 
 ---
 
